@@ -3,71 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>개미굴 단면 시뮬레이션</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Ant Colony Side-View Simulation</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="layout">
-      <section class="panel">
-        <h1>개미굴 단면 시뮬레이션 (옆 단면 뷰)</h1>
-        <p>
-          어항을 옆에서 보듯 개미굴 단면을 관찰합니다. 일개미/병정개미/수개미/여왕개미를 개별 배치할 수 있고,
-          종류별 역할을 자동 수행합니다.
-        </p>
+    <main class="app">
+      <aside class="panel">
+        <h1>개미굴 단면 시뮬레이션</h1>
+        <p>어항처럼 옆에서 보는 단면 뷰 + 넓은 지하 월드 + 캐스트별 자동 행동</p>
 
-        <div class="controls">
-          <label>
-            초기 일개미 수
-            <input id="workerCount" type="range" min="30" max="260" step="10" value="130" />
-            <span id="workerCountLabel">130</span>
+        <section class="group">
+          <h2>스폰</h2>
+          <label>개체 종류
+            <select id="antType">
+              <option value="worker">일개미</option>
+              <option value="soldier">병정개미</option>
+              <option value="male">수개미</option>
+              <option value="queen">여왕개미</option>
+            </select>
           </label>
-
-          <label>
-            굴착 성향
-            <input id="digBias" type="range" min="0.1" max="1" step="0.05" value="0.62" />
-            <span id="digBiasLabel">0.62</span>
+          <label>수량
+            <input id="spawnQty" type="number" min="1" max="200" value="20" />
           </label>
+          <button id="spawnBtn">추가</button>
+        </section>
 
-          <label>
-            챔버 형성 성향
-            <input id="chamberBias" type="range" min="0" max="1" step="0.05" value="0.46" />
-            <span id="chamberBiasLabel">0.46</span>
+        <section class="group">
+          <h2>월드/도구</h2>
+          <label>가로 카메라
+            <input id="cameraSlider" type="range" min="0" max="1" value="0" />
           </label>
-
-          <label>
-            맵 가로 보기 위치
-            <input id="cameraSlider" type="range" min="0" max="140" step="1" value="70" />
-            <span id="cameraLabel">70</span>
+          <label>시뮬레이션 속도
+            <input id="speedSlider" type="range" min="1" max="6" value="2" />
           </label>
-
-          <div class="spawn-box">
-            <label>
-              개체 종류
-              <select id="castSelect">
-                <option value="worker">일개미</option>
-                <option value="soldier">병정개미</option>
-                <option value="male">수개미</option>
-                <option value="queen">여왕개미</option>
-              </select>
-            </label>
-            <label>
-              추가 수량
-              <input id="spawnCount" type="number" min="1" max="20" value="3" />
-            </label>
-            <button id="addAntBtn" type="button">개체 추가</button>
+          <div class="tool-row">
+            <button id="eraserBtn">지우개</button>
+            <button id="voidBtn">보이드</button>
           </div>
-
-          <div class="buttons">
-            <button id="resetBtn" type="button">초기화</button>
-            <button id="pauseBtn" type="button">일시정지</button>
+          <div class="tool-row">
+            <button id="clearBtn" class="danger">월드 초기화</button>
+            <button id="pauseBtn">일시정지</button>
           </div>
-        </div>
+          <small>캔버스 클릭/드래그로 지형 수정</small>
+        </section>
 
-        <ul id="stats" class="stats"></ul>
-      </section>
+        <section class="group">
+          <h2>콜로니 지표</h2>
+          <ul id="metrics" class="metrics"></ul>
+        </section>
+      </aside>
 
-      <section class="canvas-wrap">
-        <canvas id="simCanvas" width="1000" height="620"></canvas>
+      <section class="viewport">
+        <canvas id="simCanvas" width="1200" height="680"></canvas>
       </section>
     </main>
 
