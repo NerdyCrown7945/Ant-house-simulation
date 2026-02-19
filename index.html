@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>개미굴 단면 시뮬레이션</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel">
+        <h1>개미굴 단면 시뮬레이션 (옆 단면 뷰)</h1>
+        <p>
+          어항을 옆에서 보듯 개미굴 단면을 관찰합니다. 일개미/병정개미/수개미/여왕개미를 개별 배치할 수 있고,
+          종류별 역할을 자동 수행합니다.
+        </p>
+
+        <div class="controls">
+          <label>
+            초기 일개미 수
+            <input id="workerCount" type="range" min="30" max="260" step="10" value="130" />
+            <span id="workerCountLabel">130</span>
+          </label>
+
+          <label>
+            굴착 성향
+            <input id="digBias" type="range" min="0.1" max="1" step="0.05" value="0.62" />
+            <span id="digBiasLabel">0.62</span>
+          </label>
+
+          <label>
+            챔버 형성 성향
+            <input id="chamberBias" type="range" min="0" max="1" step="0.05" value="0.46" />
+            <span id="chamberBiasLabel">0.46</span>
+          </label>
+
+          <label>
+            맵 가로 보기 위치
+            <input id="cameraSlider" type="range" min="0" max="140" step="1" value="70" />
+            <span id="cameraLabel">70</span>
+          </label>
+
+          <div class="spawn-box">
+            <label>
+              개체 종류
+              <select id="castSelect">
+                <option value="worker">일개미</option>
+                <option value="soldier">병정개미</option>
+                <option value="male">수개미</option>
+                <option value="queen">여왕개미</option>
+              </select>
+            </label>
+            <label>
+              추가 수량
+              <input id="spawnCount" type="number" min="1" max="20" value="3" />
+            </label>
+            <button id="addAntBtn" type="button">개체 추가</button>
+          </div>
+
+          <div class="buttons">
+            <button id="resetBtn" type="button">초기화</button>
+            <button id="pauseBtn" type="button">일시정지</button>
+          </div>
+        </div>
+
+        <ul id="stats" class="stats"></ul>
+      </section>
+
+      <section class="canvas-wrap">
+        <canvas id="simCanvas" width="1000" height="620"></canvas>
+      </section>
+    </main>
+
+    <script src="simulation.js"></script>
+  </body>
+</html>
