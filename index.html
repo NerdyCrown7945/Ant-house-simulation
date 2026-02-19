@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>개미굴 단면 시뮬레이션</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel">
+        <h1>개미굴 단면 시뮬레이션</h1>
+        <p>
+          실제 개미의 굴 파기 행동을 단순화해 표현한 2D 단면 모델입니다.
+          개미는 토양 강도, 터널 페로몬, 인근 공간 밀집도를 참고해 굴을 확장합니다.
+        </p>
+
+        <div class="controls">
+          <label>
+            개미 수
+            <input id="antCount" type="range" min="20" max="220" step="10" value="110" />
+            <span id="antCountLabel">110</span>
+          </label>
+
+          <label>
+            굴착 성향
+            <input id="digBias" type="range" min="0.1" max="1" step="0.05" value="0.6" />
+            <span id="digBiasLabel">0.60</span>
+          </label>
+
+          <label>
+            챔버 형성 성향
+            <input id="chamberBias" type="range" min="0" max="1" step="0.05" value="0.45" />
+            <span id="chamberBiasLabel">0.45</span>
+          </label>
+
+          <div class="buttons">
+            <button id="resetBtn">초기화</button>
+            <button id="pauseBtn">일시정지</button>
+          </div>
+        </div>
+
+        <ul id="stats" class="stats"></ul>
+      </section>
+
+      <section class="canvas-wrap">
+        <canvas id="simCanvas" width="960" height="600"></canvas>
+      </section>
+    </main>
+
+    <script src="simulation.js"></script>
+  </body>
+</html>
